@@ -1,6 +1,6 @@
 FROM python:3.10
-RUN pip3 install -r requirements.txt
 WORKDIR /usr/src/app
-COPY /usr/src/app .
+COPY equirements.txt ./
+RUN pip3 install --no-cache-dir -r requirements.txt
 ENTRYPOINT ["python"]
 CMD ["main.py"]

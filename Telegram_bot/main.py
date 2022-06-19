@@ -1,6 +1,7 @@
 import telebot
 from telebot import types
-from Parser.sql import dinner, breakfast, lunch
+from work_with_bd import lunch, breakfast, drink, dinner
+
 
 TOKEN = None
 
@@ -35,36 +36,47 @@ def website(message):
 
 @bot.message_handler(commands=['Завтрак'])
 def send_breakfast(message):
-    bot.send_message(message.chat.id, breakfast())
-    bot.send_message(message.chat.id, breakfast())
+    db_dish = 'Breakfast.csv'
+    bot.send_message(message.chat.id, breakfast(db_dish))
+    bot.send_message(message.chat.id, breakfast(db_dish))
 
 
 @bot.message_handler(commands=['Обед'])
 def send_lunch(message):
-    bot.send_message(message.chat.id, lunch())
-    bot.send_message(message.chat.id, lunch())
+    db_dish = 'Lunch.csv'
+    bot.send_message(message.chat.id, lunch(db_dish))
+    bot.send_message(message.chat.id, lunch(db_dish))
 
 
 @bot.message_handler(commands=['Ужин'])
 def send_dinner(message):
-    bot.send_message(message.chat.id, dinner())
-    bot.send_message(message.chat.id, dinner())
+    db_dish = 'Dinner.csv'
+    bot.send_message(message.chat.id, dinner(db_dish))
+    bot.send_message(message.chat.id, dinner(db_dish))
+
+
+@bot.message_handler(commands=['Ужин'])
+def send_drink(message):
+    db_dish = 'drink.csv'
+    bot.send_message(message.chat.id, drink(db_dish))
+    bot.send_message(message.chat.id, drink(db_dish))
 
 
 @bot.message_handler(commands=['Что поесть?'])
 def choice(message):
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     start = types.KeyboardButton('Старт')
     breakfast = types.KeyboardButton('Завтрак')
     lunch = types.KeyboardButton('Обед')
     dinner = types.KeyboardButton('Ужин')
-    markup.add(breakfast, lunch, dinner, start)
+    drink = types.KeyboardButton('Напитки')
+    markup.add(breakfast, lunch, dinner, drink, start)
     bot.send_message(message.chat.id, 'Выбирай', reply_markup=markup)
 
 
 @bot.message_handler(commands=['help', 'Помощь'])
 def buttoms(message):
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     website = types.KeyboardButton('Вебсайт')
     start = types.KeyboardButton('Старт')
     choice = types.KeyboardButton('Что поесть?')
@@ -87,6 +99,8 @@ def func(message):
         send_lunch(message)
     elif (message.text == "Ужин"):
         send_dinner(message)
+    elif (message.text == "Напитки"):
+        send_drink(message)
 
 
-bot.polling(none_stop=True)
+bot.polling(none_stop=True,  timeout=123)

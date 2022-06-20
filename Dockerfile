@@ -1,5 +1,5 @@
 FROM python:3.10
-RUN pip3 install -r requirements.txt
 WORKDIR .
 COPY . .
+RUN pip3 install -r requirements.txt
 CMD ["python", "Telegram_bot\main.py"]

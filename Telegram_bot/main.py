@@ -1,12 +1,15 @@
 import telebot
 from telebot import types
 from work_with_bd import lunch, breakfast, drink, dinner
+import os
 
 
-TOKEN = None
+TOKEN = os.environ["TOKEN"]
+
+'''TOKEN = None
 
 with open('TOKEN.txt') as f:
-    TOKEN = f.read().strip()
+    TOKEN = f.read().strip()'''
 bot = telebot.TeleBot(TOKEN)
 
 

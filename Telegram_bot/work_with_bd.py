@@ -5,7 +5,7 @@ import random
 import re
 
 
-my_path = r'/home/alishermale/Python/My_projects/Startup_dishes/Telegram_bot'
+my_path = r'Telegram_bot'
 
 capital_letters = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
 spare_symbols = "[]\"'"

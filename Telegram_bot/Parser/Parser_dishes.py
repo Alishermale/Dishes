@@ -14,7 +14,7 @@ HEADERS = {
 
 
 def get_html(url, params=''):
-    return  requests.get(url, headers=HEADERS, params=params)
+    return requests.get(url, headers=HEADERS, params=params)
 
 
 def get_content(html):
@@ -40,7 +40,7 @@ def save_doc(items, path):
 
 
 def save_doc2(items):
-    with open('file.csv', 'w', newline='', encoding='UTF-8') as file:
+    with open('file.csv', 'w', newline='', encoding='UTF-8'):
         df = pd.DataFrame({
             'Навание блюда': ['title'],
             'Состав': ['description'],

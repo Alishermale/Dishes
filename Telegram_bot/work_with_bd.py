@@ -19,7 +19,7 @@ def dec_for_dishes(func):
             read = [row for row in reader if row]
             rand_num = random.randint(1, len(read) - 1)
             rand_row = str(read[rand_num]).replace('h', '\n' + 'h')
-            rand_row = rand_row.replace(',', '.', 2)
+            rand_row = re.sub(r'(\,\n)', r'.\n', rand_row)#rand_row = rand_row.replace(',', '.', 2) was changed
             Dish = pd.read_csv(*args, **kwargs)
             for s in re.findall(r'\d+', rand_row[0:5]):
                 num = int(s)

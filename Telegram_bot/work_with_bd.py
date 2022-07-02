@@ -19,16 +19,18 @@ def dec_for_dishes(func):
             read = [row for row in reader if row]
             rand_num = random.randint(1, len(read) - 1)
             rand_row = str(read[rand_num]).replace('h', '\n' + 'h')
-            rand_row = re.sub(r'(\,\n)', r'.\n', rand_row)#rand_row = rand_row.replace(',', '.', 2) was changed
-            Dish = pd.read_csv(*args, **kwargs)
+            rand_row = re.sub(r'(,\n)', r'.\n', rand_row)
+            dish = pd.read_csv(*args, **kwargs)
             for s in re.findall(r'\d+', rand_row[0:5]):
                 num = int(s)
-            ingr = str((Dish.loc[:, "Ингредиенты"])[num])
+            ingr = str((dish.loc[:, "Ингредиенты"])[num])
             for letter in capital_letters:
                 rand_row = rand_row.replace(letter, '\n' + letter)
             for symbol in spare_symbols:
                 rand_row = rand_row.replace(symbol, '')
-            return rand_row.replace(ingr, '').replace('h', '\n' + 'Состав:' + '\n' + ingr.capitalize() + '.' + '\n' + 'h')
+            return rand_row.replace(ingr, '').replace(
+                'h', '\n' + 'Состав:' + '\n' + ingr.capitalize() + '.' + '\n' + 'h'
+            )
     return inner
 
 
@@ -50,4 +52,3 @@ def breakfast(*args, **kwargs):
 @dec_for_dishes
 def drink(*args, **kwargs):
     return drink
-

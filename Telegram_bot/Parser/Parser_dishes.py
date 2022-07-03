@@ -8,8 +8,11 @@ CSV = 'breakfast.csv'
 HOST = 'https://www.russianfood.com/'
 URL = 'https://www.russianfood.com/recipes/bytype/?fid=926,927'
 HEADERS = {
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36 Edg/100.0.1185.39'
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,' +
+              'image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' +
+        '(KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36 Edg/100.0.1185.39'
 }
 
 
@@ -17,7 +20,7 @@ def get_html(url, params=''):
     return requests.get(url, headers=HEADERS, params=params)
 
 
-def get_content(html):
+def get_content(html) -> list:
     soup = BeautifulSoup(html, 'html.parser')
     items = soup.find_all('div', class_='recipe_l in_seen v2')
     breakfast = []

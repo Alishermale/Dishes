@@ -11,6 +11,7 @@ capital_letters = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬ�
 spare_symbols = "[]\"'"
 
 
+# prepare dish for sending
 def dec_for_dishes(func):
     def inner(*args, **kwargs):
         path_file = os.path.join(my_path, *args, **kwargs)

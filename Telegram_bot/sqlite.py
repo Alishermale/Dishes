@@ -16,4 +16,5 @@ c.execute('''
           ([user_id] INTEGER PRIMARY KEY)
           ''')
 
+
 conn.commit()

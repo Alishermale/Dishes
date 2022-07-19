@@ -6,8 +6,9 @@ import work_with_bd
 try:
     conn = sqlite3.connect('dishes')
     c = conn.cursor()
-    print("База данных создана и успешно подключена к SQLite")
+    print("Database created and successfully connected to SQLite")
 
+    # create 2 tables
     c.execute('''
               CREATE TABLE IF NOT EXISTS dishes
               ([dish_id] INTEGER PRIMARY KEY, [dish_name] TEXT,
@@ -20,6 +21,7 @@ try:
               ([user_id] INTEGER PRIMARY KEY)
               ''')
 
+    # geting dishes by dishes and join them into db
     while True:
         dish = work_with_bd.breakfast('Breakfast.csv')
         for s in re.findall(r'\d+', dish[0:5]):
@@ -41,8 +43,8 @@ try:
     c.close()
 
 except sqlite3.Error as error:
-    print("Ошибка при подключении к sqlite", error)
+    print("Error connecting to sqlite", error)
 finally:
     if (conn):
         conn.close()
-        print("Соединение с SQLite закрыто")
+        print("SQLite connection closed")

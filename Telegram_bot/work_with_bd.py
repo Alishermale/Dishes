@@ -5,7 +5,7 @@ import random
 import re
 
 
-my_path = r'Telegram_bot'
+my_path = r'./'
 
 capital_letters = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
 spare_symbols = "[]\"'"
@@ -29,9 +29,12 @@ def dec_for_dishes(func):
                 rand_row = rand_row.replace(letter, '\n' + letter)
             for symbol in spare_symbols:
                 rand_row = rand_row.replace(symbol, '')
-            return rand_row.replace(ingr, '').replace(
+            rand_row = re.sub(r'\,\n', '.\n', rand_row)
+            rand_row = rand_row.replace(ingr, '').replace(
                 'h', '\n' + 'Состав:' + '\n' + ingr.capitalize() + '.' + '\n' + 'h'
             )
+            rand_row = re.sub('\,\.', '', rand_row)
+            return rand_row
     return inner
 
 

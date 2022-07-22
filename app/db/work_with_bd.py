@@ -4,7 +4,7 @@ import csv
 import random
 import re
 
-my_path = r'./'
+my_path = r'../'
 
 capital_letters = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
 spare_symbols = "[]\"'"

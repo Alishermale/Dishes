@@ -1,6 +1,6 @@
 import telebot
 from telebot import types
-from work_with_bd import lunch, breakfast, drink, dinner
+from app import breakfast, lunch, dinner, drink
 # when you'll want start this project at server, just delete the quotes.
 '''import os
 
@@ -8,9 +8,9 @@ from work_with_bd import lunch, breakfast, drink, dinner
 TOKEN = os.environ["TOKEN"]
 
 bot = telebot.TeleBot(TOKEN)'''
-TOKEN = None
 
-with open('TOKEN.txt') as f:
+
+with open('constants/TOKEN.txt') as f:
     TOKEN = f.read().strip()
     bot = telebot.TeleBot(TOKEN)
 

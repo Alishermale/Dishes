@@ -1,8 +1,4 @@
 .idea/
 .env/
-Telegram_bot/TOKEN.txt
-Telegram_bot/Breakfast.csv
-Telegram_bot/Dinner.csv
-Telegram_bot/drink.csv
-Telegram_bot/Lunch.csv
+app/constants/TOKEN.txt
 

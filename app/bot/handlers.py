@@ -1,10 +1,13 @@
 import os
 import telebot
+import sqlite3
 from telebot import types
-from app.bot import breakfast, lunch, dinner, drink
 from dotenv import load_dotenv
+from app.bot import breakfast, lunch, dinner, drink
+from app.db.queries import QUERIES
 
-
+conn = sqlite3.connect('../db/dishes', check_same_thread=False)
+c = conn.cursor()
 load_dotenv()
 
 TOKEN = os.getenv("TOKEN")
@@ -40,9 +43,11 @@ def website(message):
 
 @bot.message_handler(commands=['Завтрак'])
 def send_breakfast(message):
-    db_dish = 'Breakfast.csv'
-    bot.send_message(message.chat.id, breakfast(db_dish))
-    bot.send_message(message.chat.id, breakfast(db_dish))
+    bot.send_message(message.chat.id, c.execute(QUERIES.get('random dish').format(
+                         '*', 'dishes', '1', '2')))
+    # db_dish = 'Breakfast.csv' dish_id, dish_name, description, ingredient, picture
+    # bot.send_message(message.chat.id, breakfast(db_dish))
+    # bot.send_message(message.chat.id, breakfast(db_dish))
 
 
 @bot.message_handler(commands=['Обед'])

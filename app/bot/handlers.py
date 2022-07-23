@@ -1,18 +1,14 @@
+import os
 import telebot
 from telebot import types
 from app.bot import breakfast, lunch, dinner, drink
-# when you'll want start this project at server, just delete the quotes.
-'''import os
+from dotenv import load_dotenv
 
 
-TOKEN = os.environ["TOKEN"]
+load_dotenv()
 
-bot = telebot.TeleBot(TOKEN)'''
-
-
-with open('constants/TOKEN.txt') as f:
-    TOKEN = f.read().strip()
-    bot = telebot.TeleBot(TOKEN)
+TOKEN = os.getenv("TOKEN")
+bot = telebot.TeleBot(TOKEN)
 
 
 @bot.message_handler(commands=['start'])

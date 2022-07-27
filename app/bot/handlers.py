@@ -41,34 +41,29 @@ def website(message):
     bot.send_message(message.chat.id, 'Я беру рецепты пока только с этого сайта: Russianfood', reply_markup=markup)
 
 
+def sql_requests(message, dish_type: str):
+    d_mess = c.execute(QUERIES.get('random_dish').format('*', dish_type)).fetchone()[1:-1]
+    return bot.send_message(message.chat.id, str(d_mess))
+
+
 @bot.message_handler(commands=['Завтрак'])
 def send_breakfast(message):
-    bot.send_message(message.chat.id, c.execute(QUERIES.get('random dish').format(
-                         '*', 'dishes', '1', '2')))
-    # db_dish = 'Breakfast.csv' dish_id, dish_name, description, ingredient, picture
-    # bot.send_message(message.chat.id, breakfast(db_dish))
-    # bot.send_message(message.chat.id, breakfast(db_dish))
+    sql_requests(message, dish_type='1')
 
 
 @bot.message_handler(commands=['Обед'])
 def send_lunch(message):
-    db_dish = 'Lunch.csv'
-    bot.send_message(message.chat.id, lunch(db_dish))
-    bot.send_message(message.chat.id, lunch(db_dish))
+    sql_requests(message, dish_type='2')
 
 
 @bot.message_handler(commands=['Ужин'])
 def send_dinner(message):
-    db_dish = 'Dinner.csv'
-    bot.send_message(message.chat.id, dinner(db_dish))
-    bot.send_message(message.chat.id, dinner(db_dish))
+    sql_requests(message, dish_type='3')
 
 
-@bot.message_handler(commands=['Ужин'])
+@bot.message_handler(commands=['Напитки'])
 def send_drink(message):
-    db_dish = 'drink.csv'
-    bot.send_message(message.chat.id, drink(db_dish))
-    bot.send_message(message.chat.id, drink(db_dish))
+    sql_requests(message, dish_type='4')
 
 
 starts = types.KeyboardButton('Старт')

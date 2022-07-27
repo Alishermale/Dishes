@@ -3,7 +3,6 @@ import telebot
 import sqlite3
 from telebot import types
 from dotenv import load_dotenv
-from app.bot import breakfast, lunch, dinner, drink
 from app.db.queries import QUERIES
 
 conn = sqlite3.connect('../db/dishes', check_same_thread=False)
@@ -37,7 +36,7 @@ def get_user_voice(message):
 @bot.message_handler(commands=['Вебсайт'])
 def website(message):
     markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton('Тут рецепты :)', url='https://www.russianfood.com'))
+    markup.add(types.InlineKeyboardButton('Тут рецепты :)', URL='https://www.russianfood.com'))
     bot.send_message(message.chat.id, 'Я беру рецепты пока только с этого сайта: Russianfood', reply_markup=markup)
 
 

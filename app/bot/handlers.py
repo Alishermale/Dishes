@@ -24,7 +24,8 @@ def start(message):
 def get_user_sticker(message):
     bot.send_message(
         message.chat.id,
-        'Я бы тоже отправил стикер, но мой разработчик пока не добавил эту фичу. Ждём что скоро добавит )'
+        'Я бы тоже отправил стикер, но мой разработчик пока'
+        ' не добавил эту фичу. Ждём что скоро добавит )'
     )
 
 
@@ -37,7 +38,9 @@ def get_user_voice(message):
 def website(message):
     markup = types.InlineKeyboardMarkup()
     markup.add(types.InlineKeyboardButton('Тут рецепты :)', URL='https://www.russianfood.com'))
-    bot.send_message(message.chat.id, 'Я беру рецепты пока только с этого сайта: Russianfood', reply_markup=markup)
+    bot.send_message(message.chat.id,
+                     'Я беру рецепты пока только '
+                     'с этого сайта: Russianfood', reply_markup=markup)
 
 
 def sql_requests(message, dish_type: str):

@@ -30,9 +30,10 @@ def dec_for_dishes(func):
                 rand_row = rand_row.replace(symbol, '')
             rand_row = re.sub(r'\,\n', '.\n', rand_row)
             rand_row = rand_row.replace(ingr, '').replace(
-                'h', '\n' + 'Состав:' + '\n' + ingr.capitalize() + '.' + '\n' + 'h'
+                'h', '\n' + 'Состав:'
+                     + '\n' + ingr.capitalize() + '.' + '\n' + 'h'
             )
-            rand_row = re.sub('\,\.', '', rand_row)
+            rand_row = re.sub(r'\,\.', '', rand_row)
             return rand_row
 
     return inner

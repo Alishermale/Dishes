@@ -37,14 +37,16 @@ def get_user_voice(message):
 @bot.message_handler(commands=['Вебсайт'])
 def website(message):
     markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton('Тут рецепты :)', URL='https://www.russianfood.com'))
+    markup.add(types.InlineKeyboardButton(
+        'Тут рецепты :)', URL='https://www.russianfood.com'))
     bot.send_message(message.chat.id,
                      'Я беру рецепты пока только '
                      'с этого сайта: Russianfood', reply_markup=markup)
 
 
 def sql_requests(message, dish_type: str):
-    d_mess = c.execute(QUERIES.get('random_dish').format('*', dish_type)).fetchone()[1:-1]
+    d_mess = c.execute(QUERIES.get('random_dish').format(
+        '*', dish_type)).fetchone()[1:-1]
     return bot.send_message(message.chat.id, str(d_mess))
 
 

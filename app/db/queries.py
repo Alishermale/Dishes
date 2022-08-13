@@ -7,10 +7,13 @@ QUERIES = {
               ''',
     'create_table_users': '''
               CREATE TABLE IF NOT EXISTS users
-              ([user_id] INTEGER PRIMARY KEY AUTOINCREMENT,
-              [user_name] TEXT)
+              ([user_id] int NOT NULL,
+              [user_name] varchar(255) NOT NULL,
+              PRIMARY KEY (user_id))
               ''',
-    'insert': 'INSERT OR IGNORE INTO',
+    'add_new_user': 'INSERT INTO users '
+                    'VALUES(?, ?)',
     'random_dish': 'SELECT {} FROM dishes '
-                   'WHERE dish_type={} ORDER BY random() LIMIT 1'
+                   'WHERE dish_type={} ORDER BY random() LIMIT 1',
+    'delete_user': 'DELETE FROM users WHERE user_id={}'
 }

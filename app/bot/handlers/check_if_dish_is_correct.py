@@ -7,7 +7,7 @@ from aiogram.dispatcher.filters import Text
 from dotenv import load_dotenv
 from app.bot.states import ChangeDishType
 from app.db.queries import QUERIES
-from app.loader import dp
+from app.loader import dp, db
 
 conn = sqlite3.connect('/home/alishermale/Python/My_projects/dishes/app/db/dishes', check_same_thread=False)
 c = conn.cursor()
@@ -38,8 +38,10 @@ async def correct_dish_type(message: types.Message, state: FSMContext):
     await state.update_data(answer2=dish_type)
     await message.answer(f"Отлично, данные принял.\n{dish_id}, {dish_type}")
     try:
-        c.execute(QUERIES.get('update_dish_type').format(dish_type, dish_id))
-        conn.commit()
+        db.update_dish_type(dish_id, dish_type)
     except Exception as err:
-        await message.answer(F"Ошибка {err}")
+        print(err)
+        await message.answer("Произошла ошибка при изменении типа блюда,"
+                             "пожалуйста проверьте правильность вводимых данных"
+                             " и повторите попытку.")
     await state.finish()

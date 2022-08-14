@@ -44,3 +44,6 @@ class Database:
 
     def delete_user(self, user_id):
         self.execute(sql=QUERIES["delete_user"], parameters=user_id)
+
+    def update_dish_type(self, dish_id, dish_type):
+        self.execute(sql=QUERIES["update_dish_type"], parameters=(dish_type, dish_id), commit=True)

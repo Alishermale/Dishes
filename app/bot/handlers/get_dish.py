@@ -19,13 +19,11 @@ admins = os.getenv("ADMIN_ID")
 @dp.callback_query_handler(under_dish_callback.filter(step="next"))
 async def next_button(call: CallbackQuery):
     if call.from_user.id == int(admins):
-        d_mess = c.execute(QUERIES.get('random_dish').format(
-            '*', last_dish_type)).fetchone()
+        d_mess = c.execute(QUERIES.get('random_dish'), last_dish_type).fetchone()
         photo = d_mess[-2]
         caption = (d_mess[:-2], d_mess[-1])
     else:
-        d_mess = c.execute(QUERIES.get('random_dish').format(
-            '*', last_dish_type)).fetchone()[1:-1]
+        d_mess = c.execute(QUERIES.get('random_dish'), last_dish_type).fetchone()[1:-1]
         photo = d_mess[-1]
         caption = (d_mess[:-1])
     await call.message.answer_photo(photo, caption=caption,
@@ -35,13 +33,11 @@ async def next_button(call: CallbackQuery):
 async def sql_requests(call: CallbackQuery, dish_type: str):
     global last_dish_type
     if call.from_user.id == int(admins):
-        d_mess = c.execute(QUERIES.get('random_dish').format(
-            '*', last_dish_type)).fetchone()
+        d_mess = c.execute(QUERIES.get('random_dish'), dish_type).fetchone()
         photo = d_mess[-2]
         caption = (d_mess[:-2], d_mess[-1])
     else:
-        d_mess = c.execute(QUERIES.get('random_dish').format(
-            '*', last_dish_type)).fetchone()[1:-1]
+        d_mess = c.execute(QUERIES.get('random_dish'), dish_type).fetchone()[1:-1]
         photo = d_mess[-1]
         caption = (d_mess[:-1])
     last_dish_type = dish_type

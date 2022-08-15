@@ -8,7 +8,8 @@ from app.bot.keyboard.inline.callback_under_dish import under_dish_callback
 from app.db.queries import QUERIES
 from app.loader import dp
 
-conn = sqlite3.connect('/home/alishermale/Python/My_projects/dishes/app/db/dishes', check_same_thread=False)
+conn = sqlite3.connect('/home/alishermale/Python/My_projects/dishes/'
+                       'app/db/dishes', check_same_thread=False)
 c = conn.cursor()
 last_dish_type = ""
 load_dotenv()

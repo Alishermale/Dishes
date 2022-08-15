@@ -1,15 +1,15 @@
 import os
 import sqlite3
-
 from aiogram import types, Bot
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 from dotenv import load_dotenv
 from app.bot.states import ChangeDishType
-from app.db.queries import QUERIES
 from app.loader import dp, db
 
-conn = sqlite3.connect('/home/alishermale/Python/My_projects/dishes/app/db/dishes', check_same_thread=False)
+
+conn = sqlite3.connect('/home/alishermale/Python/My_projects/dishes/'
+                       'app/db/dishes', check_same_thread=False)
 c = conn.cursor()
 load_dotenv()
 bot = Bot(os.getenv('BOT_TOKEN'))
@@ -42,6 +42,6 @@ async def correct_dish_type(message: types.Message, state: FSMContext):
     except Exception as err:
         print(err)
         await message.answer("Произошла ошибка при изменении типа блюда,"
-                             "пожалуйста проверьте правильность вводимых данных"
-                             " и повторите попытку.")
+                             "пожалуйста проверьте правильность вводимых"
+                             " данных и повторите попытку.")
     await state.finish()

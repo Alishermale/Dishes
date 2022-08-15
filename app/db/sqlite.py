@@ -40,11 +40,13 @@ class Database:
 
     def add_user(self, user_id: int, user_name: str):
         parameters = (user_id, user_name)
-        self.execute(sql=QUERIES["add_new_user"], parameters=parameters, commit=True)
+        self.execute(sql=QUERIES["add_new_user"],
+                     parameters=parameters, commit=True)
 
     def delete_user(self, user_id):
         self.execute(sql=QUERIES["delete_user"], parameters=user_id)
 
     def update_dish_type(self, dish_id: int, dish_type: str):
         parameters = (dish_type, int(dish_id))
-        self.execute(sql=QUERIES["update_dish_type"], parameters=parameters, commit=True)
+        self.execute(sql=QUERIES["update_dish_type"],
+                     parameters=parameters, commit=True)

@@ -8,5 +8,6 @@ from app.loader import dp
 @dp.callback_query_handler(basic_callback.filter(button_name="settings"))
 async def send_settings_to_user(call: CallbackQuery):
     await call.answer(cache_time=60)
-    await call.message.answer("Тут ты можешь настроить бота под себя.\nПопробуй.",
+    await call.message.answer("Тут ты можешь настроить бота под себя."
+                              "\nПопробуй.",
                               reply_markup=custom_buttons)

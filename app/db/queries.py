@@ -13,8 +13,7 @@ QUERIES = {
               ''',
     'add_new_user': 'INSERT INTO users '
                     'VALUES(?, ?)',
-    'random_dish': 'SELECT {} FROM dishes '
-                   'WHERE dish_type={} ORDER BY random() LIMIT 1',
+    'random_dish': 'SELECT * FROM dishes WHERE dish_type=(?) ORDER BY random() LIMIT 1',
     'delete_user': 'DELETE FROM users WHERE user_id={}',
     'update_dish_type': 'UPDATE dishes SET dish_type = (?) WHERE dish_id = (?)'
 }

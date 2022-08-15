@@ -50,3 +50,7 @@ class Database:
         parameters = (dish_type, int(dish_id))
         self.execute(sql=QUERIES["update_dish_type"],
                      parameters=parameters, commit=True)
+
+    def random_dish(self, dish_type):
+        self.execute(sql=QUERIES["random_dish"],
+                     parameters=dish_type)

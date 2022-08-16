@@ -1,7 +1,7 @@
 from aiogram.types import CallbackQuery
 from app.bot.keyboard.inline import dishes_type_buttons
-from app.bot.keyboard.inline.callback_basic import basic_callback
-from app.bot.keyboard.inline.callback_under_dish import under_dish_callback
+from app.bot.keyboard.inline import basic_callback
+from app.bot.keyboard.inline import under_dish_callback
 from app.loader import dp
 
 

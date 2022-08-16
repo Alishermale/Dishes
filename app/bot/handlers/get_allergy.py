@@ -1,5 +1,5 @@
 from aiogram.types import CallbackQuery
-from app.bot.keyboard.inline.callback_custom import custom_callback
+from app.bot.keyboard.inline import custom_callback
 from app.loader import dp
 
 

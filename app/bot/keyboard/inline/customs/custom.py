@@ -1,5 +1,5 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from app.bot.keyboard.inline.callback_custom import custom_callback
+from app.bot.keyboard.inline.customs.callback_custom import custom_callback
 
 
 custom_buttons = InlineKeyboardMarkup(inline_keyboard=[

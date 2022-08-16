@@ -1,5 +1,5 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from app.bot.keyboard.inline.callback_basic import basic_callback
+from app.bot.keyboard.inline.basics.callback_basic import basic_callback
 
 
 basic_bottons = InlineKeyboardMarkup(inline_keyboard=[

@@ -1,5 +1,5 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from app.bot.keyboard.inline.callback_dishes_type import dishes_type_callback
+from app.bot.keyboard.inline.dish_types.callback_dishes_type import dishes_type_callback
 
 
 dishes_type_buttons = InlineKeyboardMarkup(inline_keyboard=[

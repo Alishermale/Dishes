@@ -1,3 +1,4 @@
+# say hi for users and add they to db
 import sqlite3
 from aiogram import types
 from aiogram.dispatcher.filters import Command

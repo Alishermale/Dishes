@@ -1,3 +1,4 @@
+# send to user inline buttons
 from aiogram.types import CallbackQuery
 from app.bot.keyboard.inline import dishes_type_buttons
 from app.bot.keyboard.inline import basic_callback

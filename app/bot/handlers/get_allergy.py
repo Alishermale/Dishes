@@ -1,3 +1,4 @@
+# get user's allergies.
 from aiogram.types import CallbackQuery
 from app.bot.keyboard.inline import custom_callback
 from app.loader import dp

@@ -1,3 +1,4 @@
+# get dish card.
 import os
 import sqlite3
 from aiogram.types import CallbackQuery
@@ -21,6 +22,8 @@ async def next_button(call: CallbackQuery, dish_type: str = None):
     global last_dish_type
     if dish_type:
         last_dish_type = dish_type
+        # for admins dish card will be with dish_id and dish_type.
+        # that will be helpful to see if dish_type incorrect.
     if call.from_user.id == int(admins):
         d_mess = c.execute(QUERIES.get('random_dish'),
                            last_dish_type).fetchone()

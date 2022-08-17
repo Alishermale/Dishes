@@ -1,8 +1,11 @@
-async def on_startup(dp):
+# startup app and notify admins
+# notify admins
+async def on_startup():
     from app.bot.utils.startup_notify_admins import on_startup_notify
     await on_startup_notify(dp)
 
 
+# startup app
 if __name__ == '__main__':
     from aiogram import executor
     from bot.handlers import dp

@@ -1,3 +1,4 @@
+# download all app parameters for work
 from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from app.db.sqlite import Database

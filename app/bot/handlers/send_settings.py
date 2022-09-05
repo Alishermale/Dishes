@@ -5,6 +5,7 @@ from app.bot.keyboard.inline import basic_callback
 from app.loader import dp
 
 
+# send buttons for custom to user
 @dp.callback_query_handler(basic_callback.filter(button_name="settings"))
 async def send_settings_to_user(call: CallbackQuery):
     await call.answer(cache_time=60)

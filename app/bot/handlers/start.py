@@ -1,4 +1,3 @@
-# say hi for users and add they to db
 import sqlite3
 from aiogram import types
 from aiogram.dispatcher.filters import Command
@@ -6,6 +5,7 @@ from app.bot.keyboard.inline import basic_bottons
 from app.loader import dp, db
 
 
+# say hi for users and add they to db
 @dp.message_handler(Command("start"))
 async def command_start(message: types.Message):
     await message.answer(f"Привет {message.from_user.first_name}.",

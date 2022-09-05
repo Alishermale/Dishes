@@ -22,7 +22,7 @@ class Database:
         connection = self.connection
         cursor = connection.cursor()
         data = None
-        cursor.execute(sql, parameters)
+        cursor.execute(sql, (parameters, ))
 
         if commit:
             connection.commit()
@@ -51,6 +51,5 @@ class Database:
         self.execute(sql=QUERIES["update_dish_type"],
                      parameters=parameters, commit=True)
 
-    def random_dish(self, dish_type):
-        self.execute(sql=QUERIES["random_dish"],
-                     parameters=dish_type)
+    def random_dish(self, last_dish_type):
+        return self.execute(sql=QUERIES["random_dish"], parameters=last_dish_type, fetchall=True)

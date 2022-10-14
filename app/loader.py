@@ -2,7 +2,7 @@
 from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from app.db.sqlite import Database
-from bot.data import config
+from app.bot.data import config
 
 
 bot = Bot(token=config.BOT_TOKEN, parse_mode=types.ParseMode.HTML)

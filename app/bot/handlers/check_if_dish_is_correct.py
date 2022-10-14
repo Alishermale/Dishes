@@ -3,11 +3,11 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 from dotenv import load_dotenv
-
 from app.bot.data.config import admin_id
 from app.bot.states import ChangeDishType
 from app.db import sqlite
 from app.loader import dp, db
+
 
 conn = sqlite.Database.connection
 load_dotenv()
@@ -26,7 +26,7 @@ async def command_start(message: types.Message):
 async def get_dish_id(message: types.Message, state: FSMContext):
     dish_id = message.text
     await message.answer("Спасибо. Теперь введи нужный тип блюда")
-    await state.update_data(answer1=dish_id)
+    await state.update_data(correct_dish_id=dish_id)
     await ChangeDishType.next()
 
 
@@ -35,9 +35,9 @@ async def get_dish_id(message: types.Message, state: FSMContext):
 @dp.message_handler(state=ChangeDishType.dish_type)
 async def correct_dish_type(message: types.Message, state: FSMContext):
     data = await state.get_data()
-    dish_id = data.get("answer1")
+    dish_id = data.get("dish_id")
     dish_type = message.text
-    await state.update_data(answer2=dish_type)
+    await state.update_data(correct_type=dish_type)
     await message.answer(f"Отлично, данные принял.\n{dish_id}, {dish_type}")
     try:
         db.update_dish_type(dish_id, dish_type)

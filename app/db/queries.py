@@ -3,7 +3,8 @@ QUERIES = {
     'random_dish': 'SELECT * FROM dishes WHERE dish_type=(?) ORDER BY random() LIMIT 1',
     'deactivate_user': 'DELETE FROM users WHERE user_id=(?)',
     'update_dish_type': 'UPDATE dishes SET dish_type=(?) WHERE dish_id=(?)',
-    'get_all_types': 'SELECT name_type FROM type',
+    'get_type_names': 'SELECT type_name FROM type',
+    'get_button_names': 'SELECT button_name FROM type',
     'change_last_dish_type': 'UPDATE user SET last_dish_type=(?) WHERE telegram_id=(?)',
     'get_last_dish_type': 'SELECT last_dish_type FROM user WHERE telegram_id=(?)',
     'create_user': '''CREATE TABLE user(
@@ -42,7 +43,8 @@ QUERIES = {
 )''',
     'create_type': '''CREATE TABLE type(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name_type VARCHAR(80) NOT NULL
+    type_name VARCHAR(80) NOT NULL,
+    button_name VARCHAR(80)
 );''',
     'create_dish_type': '''CREATE TABLE dish_type(
     id INTEGER

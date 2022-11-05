@@ -51,8 +51,11 @@ class Database:
         return self.execute(sql=QUERIES["random_dish"],
                             parameters=(last_dish_type, ), fetchall=True)
 
-    def get_all_types(self):
-        return self.execute(sql=QUERIES["get_all_types"], fetchall=True)
+    def get_type_names(self):
+        return self.execute(sql=QUERIES["get_type_names"], fetchall=True)
+
+    def get_button_names(self):
+        return self.execute(sql=QUERIES["get_button_names"], fetchall=True)
 
     def change_last_dish_type(self, dish_type: str, id: int):
         parameters = (dish_type, id)

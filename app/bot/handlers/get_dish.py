@@ -9,7 +9,7 @@ from app.loader import dp, db
 
 
 load_dotenv()
-types = db.get_all_types()
+types = db.get_type_names()
 all_types = ()
 for d_type in types:
     all_types += d_type
@@ -21,6 +21,7 @@ async def next_button(call: CallbackQuery, dish_type: str = None):
     last_dish_type = db.get_last_dish_type(call.from_user.id)
     if dish_type:
         db.change_last_dish_type(dish_type, call.from_user.id)
+        last_dish_type = dish_type
     # for admins dish card will be with dish_id and dish_type.
     # that will be helpful to see if dish_type incorrect.
     if call.from_user.id == int(admin_id):

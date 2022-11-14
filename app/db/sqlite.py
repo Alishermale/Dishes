@@ -49,7 +49,7 @@ class Database:
 
     def random_dish(self, last_dish_type):
         return self.execute(sql=QUERIES["random_dish"],
-                            parameters=(last_dish_type, ), fetchall=True)
+                            parameters=(last_dish_type,), fetchall=True)
 
     def get_type_names(self):
         return self.execute(sql=QUERIES["get_type_names"], fetchall=True)
@@ -63,26 +63,8 @@ class Database:
                      commit=True)
 
     def get_last_dish_type(self, telegram_id: int):
-        return ''.join(self.execute(sql=QUERIES['get_last_dish_type'], parameters=(telegram_id, ),
-                            fetchall=True)[0])
+        return ''.join(self.execute(sql=QUERIES['get_last_dish_type'], parameters=(telegram_id,),
+                                    fetchall=True)[0])
 
-    def create_user(self):
-        self.execute(sql=QUERIES["create_user"], commit=True)
-
-    def create_dish(self):
-        self.execute(sql=QUERIES["create_dish"], commit=True)
-
-    def create_ingredient(self):
-        self.execute(sql=QUERIES["create_ingredient"], commit=True)
-
-    def create_dish_ingredient(self):
-        self.execute(sql=QUERIES["create_dish_ingredient"], commit=True)
-
-    def create_allergy(self):
-        self.execute(sql=QUERIES["create_allergy"], commit=True)
-
-    def create_type(self):
-        self.execute(sql=QUERIES["create_type"], commit=True)
-
-    def create_dish_type(self):
-        self.execute(sql=QUERIES["create_dish_type"], commit=True)
+    def create(self, content_type: str):
+        self.execute(sql=QUERIES[content_type], commit=True)

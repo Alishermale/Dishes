@@ -1,23 +1,24 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from app.bot.keyboard.inline.dish_types.callback_dishes_type import dishes_type_callback
+from app.bot.keyboard.inline.dish_types.\
+    callback_dishes_type import dishes_type_callback
 from app.loader import db
 
-types = {}
-names = db.get_type_names()
-buttons = db.get_button_names()
-for name, button in zip(names, buttons):
-    types[''.join(button)] = ''.join(name)
 
-
-def type_button(types: dict, rows: int = 2) -> list:
-    tb = [
+def type_button(rows: int = 2) -> list:
+    """Takes button names from db, then generate inline buttons"""
+    types = {}
+    types_name = zip(db.get_type_names(), db.get_button_names())
+    for name, button in types_name:
+        types[''.join(button)] = ''.join(name)
+    generated_buttons = [
         InlineKeyboardButton(
             text=k,
             callback_data=dishes_type_callback.new(dish_type=types[k])
         )
         for k, v in types.items()
     ]
-    return [tb[n:n + rows] for n in range(0, len(tb), rows)]
+    return [generated_buttons[n:n + rows]
+            for n in range(0, len(generated_buttons), rows)]
 
 
-dishes_type_buttons = InlineKeyboardMarkup(inline_keyboard=type_button(types=types))
+dishes_type_buttons = InlineKeyboardMarkup(inline_keyboard=type_button())

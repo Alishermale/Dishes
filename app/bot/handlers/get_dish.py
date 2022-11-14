@@ -9,10 +9,7 @@ from app.loader import dp, db
 
 
 load_dotenv()
-types = db.get_type_names()
-all_types = ()
-for d_type in types:
-    all_types += d_type
+all_types = [''.join(d_type) for d_type in db.get_type_names()]
 
 
 # send dish and buttons to user
@@ -38,5 +35,5 @@ async def next_button(call: CallbackQuery, dish_type: str = None):
 
 @dp.callback_query_handler(dishes_type_callback.filter(
     dish_type=all_types))
-async def send_drink(call: CallbackQuery):
+async def send_dish (call: CallbackQuery):
     await next_button(call, dish_type=call.data.split(":")[-1])

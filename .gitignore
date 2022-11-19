@@ -1,3 +1,6 @@
 .idea/
 .env/
 .env
+__pycache__/
+app/db/dishes
+app/tests/test_data

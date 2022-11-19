@@ -22,7 +22,7 @@ class Database:
         connection = self.connection
         cursor = connection.cursor()
         data = None
-        cursor.execute(sql, (parameters, ))
+        cursor.execute(sql, parameters)
 
         if commit:
             connection.commit()
@@ -34,17 +34,13 @@ class Database:
 
         return data
 
-    def create_table_users(self):
-        sql = QUERIES["create_table_users"]
-        self.execute(sql, commit=True)
-
     def add_user(self, user_id: int, user_name: str):
         parameters = (user_id, user_name)
-        self.execute(sql=QUERIES["add_new_user"],
+        self.execute(sql=QUERIES["add_user"],
                      parameters=parameters, commit=True)
 
-    def delete_user(self, user_id):
-        self.execute(sql=QUERIES["delete_user"], parameters=user_id)
+    def deactivate_user(self, user_id):
+        self.execute(sql=QUERIES["deactivate_user"], parameters=user_id)
 
     def update_dish_type(self, dish_id: int, dish_type: str):
         parameters = (dish_type, int(dish_id))
@@ -52,4 +48,23 @@ class Database:
                      parameters=parameters, commit=True)
 
     def random_dish(self, last_dish_type):
-        return self.execute(sql=QUERIES["random_dish"], parameters=last_dish_type, fetchall=True)
+        return self.execute(sql=QUERIES["random_dish"],
+                            parameters=(last_dish_type,), fetchall=True)
+
+    def get_type_names(self):
+        return self.execute(sql=QUERIES["get_type_names"], fetchall=True)
+
+    def get_button_names(self):
+        return self.execute(sql=QUERIES["get_button_names"], fetchall=True)
+
+    def change_last_dish_type(self, dish_type: str, id: int):
+        parameters = (dish_type, id)
+        self.execute(sql=QUERIES['change_last_dish_type'], parameters=parameters,
+                     commit=True)
+
+    def get_last_dish_type(self, telegram_id: int):
+        return ''.join(self.execute(sql=QUERIES['get_last_dish_type'], parameters=(telegram_id,),
+                                    fetchall=True)[0])
+
+    def create(self, content_type: str):
+        self.execute(sql=QUERIES[content_type], commit=True)

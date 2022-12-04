@@ -1,7 +1,7 @@
 from app.db.sqlite import Database
 
 
-# inicializacion db
+# initialization db
 __init_db__ = Database()
 
 

@@ -1,8 +1,13 @@
 QUERIES = {
-    'add_user': '''INSERT INTO users VALUES(?, ?)''',
-    'random_dish': 'SELECT * FROM dishes WHERE dish_type=(?) ORDER BY random() LIMIT 1',
-    'deactivate_user': 'DELETE FROM users WHERE user_id=(?)',
-    'update_dish_type': 'UPDATE dishes SET dish_type=(?) WHERE dish_id=(?)',
+    'add_user': '''INSERT INTO user(telegram_id, full_name) VALUES(?, ?)''',
+    'random_dish': '''SELECT d.*, i.ingredient_name FROM dish d INNER JOIN dish_type dt
+                        ON d.id = dt.dish_id INNER JOIN type t
+                        ON dt.type_id = t.id INNER JOIN dish_ingredient di
+                        ON d.id = di.dish_id INNER JOIN ingredient i
+                        ON di.ingredient_id = i.id WHERE type_name = (?)
+                        ORDER BY random() LIMIT 1''',
+    'deactivate_user': 'DELETE FROM user WHERE user_id=(?)',
+    'update_dish_type': 'UPDATE dish SET dish_type=(?) WHERE dish_id=(?)',
     'get_type_names': 'SELECT type_name FROM type',
     'get_button_names': 'SELECT button_name FROM type',
     'change_last_dish_type': 'UPDATE user SET last_dish_type=(?) WHERE telegram_id=(?)',
@@ -12,7 +17,7 @@ QUERIES = {
     full_name VARCHAR(128) NOT NULL,
     is_active BIT(1) DEFAULT 1 NOT NULL,
     telegram_id VARCHAR(15) NOT NULL,
-    last_dish_type VARCHAR(50) NOT NULL
+    last_dish_type VARCHAR(50)  DEFAULT 'drink'
 );''',
     'create_dish': '''CREATE TABLE dish(
     id INTEGER PRIMARY KEY AUTOINCREMENT,

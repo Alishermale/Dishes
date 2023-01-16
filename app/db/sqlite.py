@@ -68,3 +68,29 @@ class Database:
 
     def create(self, content_type: str):
         self.execute(sql=QUERIES[content_type], commit=True)
+
+    def add_dish(self, title, description, picture):
+        user_id = 1
+        parameters = (title, description, picture, user_id)
+        self.execute(sql=QUERIES["add_dish"],
+                     parameters=parameters, commit=True)
+
+    def add_dish_type(self, type_id, dish_id):
+        parameters = (type_id, dish_id)
+        self.execute(sql=QUERIES["add_dish_type"],
+                     parameters=parameters, commit=True)
+
+    def add_ingredient(self, ingredient_name):
+        self.execute(sql=QUERIES['add_ingredient'],
+                     parameters=(ingredient_name,), commit=True)
+
+    def get_last_dish_id(self):
+        return (self.execute(sql=QUERIES["get_last_dish_id"], fetchall=True)[0])[0]
+
+    def get_ingredient_id(self, ingredient_name):
+        return (self.execute(sql=QUERIES["get_ingredient_id"],
+                             parameters=(ingredient_name,), fetchall=True))[0][0]
+
+    def add_dish_ingredient(self, dish_id, ingredient_id):
+        self.execute(sql=QUERIES["add_dish_ingredient"], parameters=(dish_id,
+                     ingredient_id), commit=True)

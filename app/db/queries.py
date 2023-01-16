@@ -64,5 +64,13 @@ SET allergy_name = (SELECT ingredient_name
                     FROM ingredient INNER JOIN allergy 
                     ON ingredient.id = ingredient_id
                     WHERE ingredient.id = ingredient_id)
-WHERE allergy_name IS NULL;'''
+WHERE allergy_name IS NULL;''',
+    'add_dish': '''INSERT OR REPLACE INTO dish (title, description, picture, user_id)
+                        VALUES (?,?,?,?)''',
+    'add_dish_type': '''INSERT INTO dish_type (type_id, dish_id) VALUES (?,?)''',
+    'get_last_dish_id': '''SELECT MAX(id) FROM dish''',
+    'add_ingredient': '''INSERT OR IGNORE INTO ingredient(ingredient_name) VALUES (?)''',
+    'get_ingredient_id': '''SELECT id FROM ingredient WHERE ingredient_name IS (?)''',
+    'add_dish_ingredient': '''INSERT OR IGNORE INTO dish_ingredient(dish_id, ingredient_id)
+                                VALUES (?,?)'''
 }

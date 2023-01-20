@@ -1,1 +1,1 @@
-from .change_dishi_type_state import ChangeDishType
+from .change_dish_type_state import ChangeDishType

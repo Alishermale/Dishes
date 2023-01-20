@@ -23,17 +23,17 @@ async def next_button(call: CallbackQuery, dish_type: str = None):
     # that will be helpful to see if dish_type incorrect.
     if call.from_user.id == int(admin_id):
         d_mess = db.random_dish(last_dish_type)
-        photo = d_mess[0][-2]
-        caption = (d_mess[0][:-2], d_mess[0][-1])
+        photo = d_mess[0][-3]
+        caption = (d_mess[0][:-3], d_mess[0][-1])
     else:
         d_mess = db.random_dish(last_dish_type)
-        photo = d_mess[0][-2]
-        caption = (d_mess[0][:-1])
+        photo = d_mess[0][-3]
+        caption = (d_mess[0][1:-2], d_mess[0][-1])
     await call.message.answer_photo(photo, caption=caption,
                                     reply_markup=under_dish_buttons)
 
 
 @dp.callback_query_handler(dishes_type_callback.filter(
     dish_type=all_types))
-async def send_dish (call: CallbackQuery):
+async def send_dish(call: CallbackQuery):
     await next_button(call, dish_type=call.data.split(":")[-1])

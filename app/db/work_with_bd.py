@@ -4,7 +4,7 @@ import csv
 import random
 import re
 
-my_path = ''
+my_path = '../parser/file.csv'
 
 capital_letters = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
 spare_symbols = "[]\"'"
@@ -20,10 +20,10 @@ def dec_for_dishes(func):
             rand_num = random.randint(1, len(read) - 1)
             rand_row = str(read[rand_num]).replace('h', '\n' + 'h')
             rand_row = re.sub(r'(,\n)', r'.\n', rand_row)
-            dish = pd.read_csv(*args, **kwargs)
+            dish = pd.read_csv(my_path, *args, **kwargs)
             for s in re.findall(r'\d+', rand_row[0:5]):
                 num = int(s)
-            ingr = str((dish.loc[:, "Ингредиенты"])[num])
+            ingr = str((dish.loc[:, "Состав"])[num])
             for letter in capital_letters:
                 rand_row = rand_row.replace(letter, '\n' + letter)
             for symbol in spare_symbols:

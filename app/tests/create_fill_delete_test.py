@@ -1,7 +1,7 @@
 from app.db.sqlite import Database
 
 
-# inicializacion db
+# initialization db
 __init_db__ = Database()
 
 
@@ -72,11 +72,11 @@ def test_test_dish_type():
 
 
 # delete db
-def test_delete_db():
-    __init_db__.execute(sql='''drop table dish''')
-    __init_db__.execute(sql='''drop table user''')
-    __init_db__.execute(sql='''drop table ingredient''')
-    __init_db__.execute(sql='''drop table type''')
-    __init_db__.execute(sql='''drop table dish_type''')
-    __init_db__.execute(sql='''drop table dish_ingredient''')
-    __init_db__.execute(sql='''drop table allergy''')
+# def test_delete_db():
+#     __init_db__.execute(sql='''drop table dish''')
+#     __init_db__.execute(sql='''drop table user''')
+#     __init_db__.execute(sql='''drop table ingredient''')
+#     __init_db__.execute(sql='''drop table type''')
+#     __init_db__.execute(sql='''drop table dish_type''')
+#     __init_db__.execute(sql='''drop table dish_ingredient''')
+#     __init_db__.execute(sql='''drop table allergy''')
